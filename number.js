@@ -8,9 +8,9 @@ const rl = readline.createInterface({
 
 const params = {
     count: 0,
-    min: 100,
-    max: 200,
-    get hiddenNum() {
+    min: 0,
+    max: 100,
+    get num() {
         if (this._ === undefined) {
             this._ = Math.round(Math.random()* (params.max - params.min) + params.min);
         }
@@ -25,14 +25,14 @@ rl.on('line', (input) => {
     if (input > params.max || input < params.min) {
         rl.write(`Число ${input} вне диапазона \n`);
     } else {
-        if (input > params.hiddenNum) {
+        if (input > params.num) {
             rl.write('Меньше \n');
             params.count++;
-        } else if (input < params.hiddenNum) {
+        } else if (input < params.num) {
             rl.write('Больше \n');
             params.count++;
-        } else if (+input === params.hiddenNum) {
-            rl.write(`Отгадано число ${params.hiddenNum} за ${params.count} попыток`);
+        } else if (+input === params.num) {
+            rl.write(`Отгадано число ${params.num} за ${params.count} попыток`);
             rl.close()
         }
     }
